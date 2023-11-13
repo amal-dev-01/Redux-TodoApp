@@ -5,8 +5,6 @@ import { deleteTask ,editTask} from "../features/formSlice"
 import {
   MDBCard,
   MDBCardBody,
-  MDBCardTitle,
-  MDBCardText,
   MDBBtn
 } from 'mdb-react-ui-kit';
 
@@ -19,8 +17,10 @@ const Details = () => {
   console.log(task,'task');
   console.log(pid,'id');
   const dispatch = useDispatch();
+  
+  const selectedProduct = task.filter((item) => item.id == pid);
 
-  const [editedTask, setEditedTask] = useState([]);
+  const [editedTask, setEditedTask] = useState([selectedProduct[0].name]);
 
   const removeTask = (id) => {
     dispatch(deleteTask({ id: id }));
@@ -32,9 +32,10 @@ const Details = () => {
     navigate('/')
     setEditedTask('');
   };
-  const selectedProduct = task.filter((item) => item.id == pid);
 
-  console.log(selectedProduct,'selectedProduct');
+  // console.log(selectedProduct,'selectedProduct');
+  // console.log(selectedProduct[0].name, 'selectedProduct');
+
 
   return (
     <div>
